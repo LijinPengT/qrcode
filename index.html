@@ -27,37 +27,39 @@
         }(),
         language:(navigator.browserLanguage || navigator.language).toLowerCase()
     }
-    //判断是否IE内核
-    if (browser.versions.trident) {
-        alert("This is a IE browser");
-    }
-    //判断是否webKit内核
-    if (browser.versions.webKit) {
-        alert("This is a webKit browser");
-    }
-    if (browser.versions.weixin) {
+    // //判断是否IE内核
+    // if (browser.versions.trident) {
+    //     alert("This is a IE browser");
+    // }
+    // //判断是否webKit内核
+    // if (browser.versions.webKit) {
+    //     alert("This is a webKit browser");
+    // }
+    if (browser.versions.weixin || browser.versions.qq) {
       alert("请点击右上角，使用浏览器打开！")
+    } else {
+      //判断是否移动端
+        if (browser.versions.mobile || browser.versions.android || browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+            alert("当前设备为移动端：正在下载！");
+            // 根据设备类型跳转到不同链接
+            if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+              alert("当前设备为IOS移动端：矿大钉正在下载！");
+              window.location.href = 'https://apps.apple.com/us/app/e%E7%9F%BF%E5%A4%A72-0/id6449583225';
+            } else if (browser.versions.android) {
+              alert("当前设备为Android移动端：矿大钉正在下载！");
+              window.location.href = 'https://emas-devops-cdn.aliyuncs.com/job/PJ319789077508937728/cumtding@6.5.5.3-release-.apk';
+            }
+        } else {
+          alert("当前设备为PC端，请在移动端使用浏览器打开！");
+        }
     }
-    //判断是否移动端
-    if (browser.versions.mobile || browser.versions.android || browser.versions.ios) {
-        alert("当前设备为移动端：正在下载！");
-    }
+    
     // 检测是否为iOS设备
     // var isiOS = /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && !window.MSStream;
 
     // 检测是否为Android设备
     // var isAndroid = /(Android)/i.test(navigator.userAgent);
 
-    // 根据设备类型跳转到不同链接
-    if (browser.versions.ios) {
-      alert("当前设备为IOS移动端：矿大钉正在下载！");
-      window.location.href = 'https://apps.apple.com/us/app/e%E7%9F%BF%E5%A4%A72-0/id6449583225';
-    } else if (browser.versions.android) {
-      alert("当前设备为Android移动端：矿大钉正在下载！");
-      window.location.href = 'https://emas-devops-cdn.aliyuncs.com/job/PJ319789077508937728/cumtding@6.5.5.3-release-.apk';
-    } else {
-      alert("当前设备为PC端，请在移动端使用浏览器打开！");
-    }
   </script>
 </body>
 </html>
