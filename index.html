@@ -5,19 +5,57 @@
 </head>
 <body>
   <script type="text/javascript">
+    //判断终端
+    var browser={
+        versions:function(){
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,//火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //iOS终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //Android终端
+                iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增）
+                qq: u.match(/\sQQ/i) == " qq" //是否QQ
+            };
+        }(),
+        language:(navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+    //判断是否IE内核
+    if (browser.versions.trident) {
+        alert("is IE");
+    }
+    //判断是否webKit内核
+    if (browser.versions.webKit) {
+        alert("is webKit");
+    }
+    if (browser.versions.weixin) {
+      alert("请点击右上角，使用浏览器打开！")
+    }
+    //判断是否移动端
+    if (browser.versions.mobile || browser.versions.android || browser.versions.ios) {
+        alert("当前设备为移动端：正在下载！");
+    }
     // 检测是否为iOS设备
-    var isiOS = /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && !window.MSStream;
+    // var isiOS = /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent) && !window.MSStream;
 
     // 检测是否为Android设备
-    var isAndroid = /(Android)/i.test(navigator.userAgent);
+    // var isAndroid = /(Android)/i.test(navigator.userAgent);
 
     // 根据设备类型跳转到不同链接
-    if (isiOS) {
+    if (browser.versions.ios) {
+      alert("当前设备为IOS移动端：矿大钉正在下载！");
       window.location.href = 'https://apps.apple.com/us/app/e%E7%9F%BF%E5%A4%A72-0/id6449583225';
-    } else if (isAndroid) {
+    } else if (browser.versions.android) {
+      alert("当前设备为Android移动端：矿大钉正在下载！");
       window.location.href = 'https://emas-devops-cdn.aliyuncs.com/job/PJ319789077508937728/cumtding@6.5.5.3-release-.apk';
     } else {
-      window.location.href = 'https://emas-devops-cdn.aliyuncs.com/job/PJ319789077508937728/cumtding@6.5.5.3-release-.apk';
+      alert("当前设备为PC端，请在移动端使用浏览器打开！");
     }
   </script>
 </body>
